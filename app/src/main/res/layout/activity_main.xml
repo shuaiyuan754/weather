@@ -4,14 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:background="@drawable/main_background"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:layout_width="100dp"
-        android:layout_height="48dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_city"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:entries="@array/cities"
+            android:spinnerMode="dialog"
+            />
 
+    </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/iv_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/sunday_icon"/>
+    <TextView
+        android:id="@+id/current_tem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24℃"
+        android:textSize="70sp"
+        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2022-07-12 星期二"
+        android:textSize="30sp"
+        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/range_tem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21℃~28℃"
+        android:textSize="30sp"
+        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/tv_win"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="南風三級"
+        android:textSize="30sp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/tv_air"
+        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="空氣：良\n空氣好，可以外出活動"
+        android:textSize="30sp"
+        android:textColor="@color/white"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/future_weather"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
