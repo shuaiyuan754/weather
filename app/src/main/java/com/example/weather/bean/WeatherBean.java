@@ -19,6 +19,16 @@ public class WeatherBean {
     @SerializedName("data")
     private List<DayWeatherBean> dayWeatherBeanList;
 
+    public WeatherBean() {
+    }
+
+    public WeatherBean(String cityId, String city, String updateTime, List<DayWeatherBean> dayWeatherBeanList) {
+        this.cityId = cityId;
+        this.city = city;
+        this.updateTime = updateTime;
+        this.dayWeatherBeanList = dayWeatherBeanList;
+    }
+
     public String getCityId() {
         return cityId;
     }

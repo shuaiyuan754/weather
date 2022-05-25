@@ -23,6 +23,19 @@ public class DayWeatherBean {
     @SerializedName("win_speed")
     private String winSpeed;
 
+    public DayWeatherBean() {
+    }
+
+    public DayWeatherBean(String date, String wea, String weaImg, String temDay, String temNight, String win, String winSpeed) {
+        this.date = date;
+        this.wea = wea;
+        this.weaImg = weaImg;
+        this.temDay = temDay;
+        this.temNight = temNight;
+        this.win = win;
+        this.winSpeed = winSpeed;
+    }
+
     public String getDate() {
         return date;
     }

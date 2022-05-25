@@ -3,7 +3,10 @@ package com.example.weather;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.weather.adapter.FutureWeatherAdapter;
 import com.example.weather.bean.DayWeatherBean;
 import com.example.weather.bean.WeatherBean;
 import com.example.weather.util.NetUtil;
@@ -28,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatSpinner spinner;
     private String[] cities;
     private ArrayAdapter<String> adapter;
-    private TextView currentTem;
+    private TextView weather;
     private ImageView weatherIcon;
     private TextView date;
     private TextView range;
     private TextView win;
-    private TextView air;
+    private TextView winSpeed;
     private Handler handler = new Handler(Looper.myLooper()){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -51,13 +55,59 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+    private RecyclerView recyclerView;
+    private List<DayWeatherBean> dayWeatherBeanList;
 
+    @SuppressLint("SetTextI18n")
     private void updateDayWeather(WeatherBean weatherBean) {
-        List<DayWeatherBean> dayWeatherBeanList = weatherBean.getDayWeatherBeanList();
+        dayWeatherBeanList = weatherBean.getDayWeatherBeanList();
         DayWeatherBean todayWeather = dayWeatherBeanList.get(0);
+        weatherIcon.setImageResource(getIcon(todayWeather.getWeaImg()));
+        weather.setText(todayWeather.getWea());
+        date.setText(todayWeather.getDate());
+        range.setText(todayWeather.getTemNight() + "℃~" +todayWeather.getTemDay() + "℃" );
+        win.setText(todayWeather.getWin());
+        winSpeed.setText(todayWeather.getWinSpeed());
+
+        dayWeatherBeanList.remove(0);
 
 
+    }
 
+    private int getIcon(String weaImg) {
+        int result = 0;
+        switch (weaImg){
+            case "xue":
+                result = R.drawable.xue_icon;
+                break;
+            case "lei":
+                result = R.drawable.lei_icon;
+                break;
+            case "shachen":
+                result = R.drawable.shachen_icon;
+                break;
+            case "wu":
+                result = R.drawable.wu_icon;
+                break;
+            case "bingbao":
+                result = R.drawable.bingbao_icon;
+                break;
+            case "yun":
+                result = R.drawable.yun_icon;
+                break;
+            case "yu":
+                result = R.drawable.yu_icon;
+                break;
+            case "yin":
+                result = R.drawable.yin_icon;
+                break;
+            case "qing":
+                result = R.drawable.qing_icon;
+                break;
+            default:
+                result = R.drawable.qing_icon;
+        }
+        return result;
     }
 
     @Override
@@ -90,11 +140,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         weatherIcon = this.findViewById(R.id.iv_weather);
-        currentTem = this.findViewById(R.id.current_tem);
+        weather = this.findViewById(R.id.tv_weather);
         date = this.findViewById(R.id.tv_date);
         range = this.findViewById(R.id.range_tem);
         win = this.findViewById(R.id.tv_win);
-        air = this.findViewById(R.id.tv_air);
+        winSpeed = this.findViewById(R.id.tv_win_speed);
+
+        recyclerView = this.findViewById(R.id.future_weather);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setAdapter(new FutureWeatherAdapter(this,dayWeatherBeanList));
 
 
 
