@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
         dayWeatherBeanList.remove(0);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setAdapter(new FutureWeatherAdapter(this,dayWeatherBeanList));
+
 
     }
 
@@ -145,10 +148,8 @@ public class MainActivity extends AppCompatActivity {
         range = this.findViewById(R.id.range_tem);
         win = this.findViewById(R.id.tv_win);
         winSpeed = this.findViewById(R.id.tv_win_speed);
-
         recyclerView = this.findViewById(R.id.future_weather);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        recyclerView.setAdapter(new FutureWeatherAdapter(this,dayWeatherBeanList));
+
 
 
 
