@@ -11,7 +11,8 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void testNetUtil(){
+        String s = NetUtil.doGet("https://www.yiketianqi.com/free/week?unescape=1&appid=36728299&appsecret=VUqR1b9W");
+        System.out.println(s);
     }
 }
