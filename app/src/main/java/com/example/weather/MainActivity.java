@@ -15,7 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.weather.bean.DayWeatherBean;
+import com.example.weather.bean.WeatherBean;
 import com.example.weather.util.NetUtil;
+import com.google.gson.Gson;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,9 +41,24 @@ public class MainActivity extends AppCompatActivity {
             if (msg.what == 0){
                 String weather = (String) msg.obj;
                 Log.d(TAG, "handleMessage: " + weather);
+
+                Gson gson = new Gson();
+                WeatherBean weatherBean = gson.fromJson(weather, WeatherBean.class);
+                Log.d(TAG, "handleMessage: Bean//////////" + weatherBean);
+
+                updateDayWeather(weatherBean);
+
             }
         }
     };
+
+    private void updateDayWeather(WeatherBean weatherBean) {
+        List<DayWeatherBean> dayWeatherBeanList = weatherBean.getDayWeatherBeanList();
+        DayWeatherBean todayWeather = dayWeatherBeanList.get(0);
+
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
