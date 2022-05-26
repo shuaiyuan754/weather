@@ -26,34 +26,30 @@
     <ImageView
         android:id="@+id/iv_weather"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:src="@drawable/qing_icon"/>
+        android:layout_height="150dp" />
+
     <TextView
         android:id="@+id/tv_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="晴"
-        android:textSize="50sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="50sp" />
     <TextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2022-07-12 星期二"
         android:textSize="30sp"
         android:textColor="@color/white"/>
     <TextView
         android:id="@+id/range_tem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="21℃~28℃"
         android:textSize="30sp"
         android:textColor="@color/white"/>
     <TextView
         android:id="@+id/tv_win"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="南風"
         android:textSize="30sp"
         android:textColor="@color/white"/>
 
@@ -62,7 +58,6 @@
         android:layout_width="wrap_content"
         android:gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:text="风力"
         android:textSize="30sp"
         android:textColor="@color/white"/>
 

@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "handleMessage: Bean//////////" + weatherBean);
 
                 updateDayWeather(weatherBean);
-                Toast.makeText(MainActivity.this, "更新成功!" + weatherBean.getUpdateTime(), Toast.LENGTH_SHORT).show();
 
             }
         }
@@ -62,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void updateDayWeather(WeatherBean weatherBean) {
+        if (weatherBean == null){
+            Toast.makeText(this, "无网络连接！", Toast.LENGTH_SHORT).show();
+            return;
+        }
         dayWeatherBeanList = weatherBean.getDayWeatherBeanList();
         DayWeatherBean todayWeather = dayWeatherBeanList.get(0);
         weatherIcon.setImageResource(getIcon(todayWeather.getWeaImg()));
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(new FutureWeatherAdapter(this,dayWeatherBeanList));
+        Toast.makeText(MainActivity.this, "更新成功!" + weatherBean.getUpdateTime(), Toast.LENGTH_SHORT).show();
 
 
     }

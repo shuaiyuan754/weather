@@ -10,7 +10,7 @@ android {
         minSdk 21
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,6 +25,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    // 自定义打包名称
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+//            outputFileName = "GenerateAPK.apk"
+//            outputFileName = "GenerateAPK_${buildType.name}.apk"
+            outputFileName = "WeatherAPK_${buildType.name}_v${versionName}.apk"
+
+        }
+    }
+
+
 }
 
 dependencies {
