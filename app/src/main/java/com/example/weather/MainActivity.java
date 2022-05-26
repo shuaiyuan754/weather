@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weather.adapter.FutureWeatherAdapter;
 import com.example.weather.bean.DayWeatherBean;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "handleMessage: Bean//////////" + weatherBean);
 
                 updateDayWeather(weatherBean);
+                Toast.makeText(MainActivity.this, "更新成功!" + weatherBean.getUpdateTime(), Toast.LENGTH_SHORT).show();
 
             }
         }
